@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+
+    <!-- Console appender for local dev -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Cloud Logging appender -->
+    <appender name="CLOUD_LOGGING" class="com.google.cloud.logging.logback.LoggingAppender">
+        <log>application-log</log>
+        <enhancer>com.google.cloud.logging.logback.LoggingEnhancer</enhancer>
+        <flushLevel>INFO</flushLevel>
+    </appender>
+
+    <!-- Logger for ALL amplify packages -->
+    <logger name="com.devpost.amplify" level="DEBUG" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="CLOUD_LOGGING"/>
+    </logger>
+
+    <!-- Spring framework logging (optional, lower verbosity) -->
+    <logger name="org.springframework" level="WARN"/>
+
+    <!-- Root fallback -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="CLOUD_LOGGING"/>
+    </root>
+</configuration>
