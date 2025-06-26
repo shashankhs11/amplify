@@ -42,6 +42,9 @@ We built this in under a week during [Agent Development Kit Hackathon with Googl
 - Gemini, Imagen, Veo
 - GCP: Cloud Run, BigQuery, Artifact Registry
 - Docker
+- 
+## Flow
+![Flow](./amplify-flow.png)
 
 ## Architecture
 ![Architecture](./architecture.jpg)
